@@ -1,0 +1,131 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  //
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build and debug",
+      "request": "launch",
+      "type": "cppvsdbg", //gdb for Visual Studio
+      "program": "${workspaceFolder}/${config:mesonbuild.buildFolder}/demo.exe",
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/${config:mesonbuild.buildFolder}/meson-vscode.env",
+      "environment": [ //variables d'entorn
+        {
+          "name": "GST_DEBUG",
+          "value": "*:2,flu*:6"
+        },
+        {
+          "name": "GST_PLUGIN_PATH",
+          "value": "path to plugins"
+        },
+        {
+          "name": "GST_DEBUG_COLOR_MODE", //avoids simbols to color text in some editors...
+          "value": "off"
+        },
+        {
+          "name": "GST_DEBUG_FILE",
+          "value": "gstreamer_debug.log"
+        },
+        {
+          "name": "GST_DEBUG_DUMP_DOT_DIR", //graphviz to visualize
+          "value": "${workspaceRoot}"
+        },
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": "Meson: Build all targets",
+      "symbolOptions": {
+        "searchPaths": [
+          "${workspaceFolder}/${config:mesonbuild.buildFolder}",
+        ],
+        "searchMicrosoftSymbolServer": true,
+        "cachePath": "${workspaceFolder}\\${config:mesonbuild.buildFolder}\\vscode-symbols-cache",
+        "moduleFilter": {
+          "mode": "loadAllButExcluded",
+          "excludedModules": []
+        }
+      }
+    },
+    {
+      "name": "Build and debug msys",
+      "request": "launch",
+      "type": "cppdbg", //gdb for linux
+      "program": "${workspaceFolder}/builddirmsys/demo.exe",
+      "envFile": "${workspaceFolder}/builddirmsys/meson-vscode.env",
+      "environment": [ //variables d'entorn
+        {
+          "name": "GST_DEBUG",
+          "value": "*:2,flu*:6"
+        },
+        {
+          "name": "GST_PLUGIN_PATH",
+          "value": "path to plugins"
+        },
+        {
+          "name": "GST_DEBUG_COLOR_MODE", //avoids simbols to color text in some editors...
+          "value": "off"
+        },
+        {
+          "name": "GST_DEBUG_FILE",
+          "value": "gstreamer_debug.log"
+        },
+        {
+          "name": "GST_DEBUG_DUMP_DOT_DIR", //graphviz to visualize
+          "value": "${workspaceRoot}"
+        },
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": "Meson: Build all targets msys",
+      "symbolLoadInfo": {
+        "searchPaths": [
+          "${workspaceFolder}/builddirmsys",
+        ],
+        "searchMicrosoftSymbolServer": true,
+        "cachePath": "${workspaceFolder}\\builddirmsys\\vscode-symbols-cache",
+        "moduleFilter": {
+          "mode": "loadAllButExcluded",
+          "excludedModules": []
+        }
+      }
+    },
+    {
+      "name": "g++.exe - Build and debug active file(No Meson)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}mingw64.exe",
+      // There I have got error Property keys must be doublequotedjsonc
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb", //lldb
+      "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "C/C++: g++.exe build active file"
+    },
+    {
+      "name": "msvc - Build and debug active file(No Meson)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+      // There I have got error Property keys must be doublequotedjsonc
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "console": "integratedTerminal",
+      "preLaunchTask": "C/C++: msvc build active file"
+    }
+  ]
+}

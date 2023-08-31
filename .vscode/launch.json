@@ -77,6 +77,8 @@
           "value": "${workspaceRoot}"
         },
       ],
+      "MIMode": "gdb", //lldb
+      "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
       "stopAtEntry": false,
       "cwd": "${workspaceRoot}",
       "preLaunchTask": "Meson: Build all targets msys",
@@ -91,6 +93,19 @@
           "excludedModules": []
         }
       }
+    },
+    {
+      "name": "msvc - Build and debug active file(No Meson)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+      // There I have got error Property keys must be doublequotedjsonc
+      "args": [],
+      "stopAtEntry": true,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "console": "integratedTerminal",
+      "preLaunchTask": "C/C++: msvc build active file"
     },
     {
       "name": "g++.exe - Build and debug active file(No Meson)",
@@ -113,19 +128,7 @@
         }
       ],
       "preLaunchTask": "C/C++: g++.exe build active file"
-    },
-    {
-      "name": "msvc - Build and debug active file(No Meson)",
-      "type": "cppvsdbg",
-      "request": "launch",
-      "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
-      // There I have got error Property keys must be doublequotedjsonc
-      "args": [],
-      "stopAtEntry": true,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "console": "integratedTerminal",
-      "preLaunchTask": "C/C++: msvc build active file"
     }
+    
   ]
 }

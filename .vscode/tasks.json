@@ -75,7 +75,7 @@
 		{
 			"label": "Meson: Build all targets msys",
 			"type": "shell",
-			"command": "set PATH=%PATH%;C:\\msys64\\mingw64\\bin && meson setup --reconfigure --debug builddirmsys && cd builddirmsys && ninja && meson devenv -C . --dump-format vscode --dump meson-vscode.env",
+			"command": "set PATH=C:\\msys64\\mingw64\\bin;%PATH% && meson setup --reconfigure --debug builddirmsys && cd builddirmsys && ninja && meson devenv -C . --dump-format vscode --dump meson-vscode.env",
 			"detail": "compiler: C:\\msys64\\mingw64\\bin\\gcc.exe",
 			"problemMatcher": []
 		}
